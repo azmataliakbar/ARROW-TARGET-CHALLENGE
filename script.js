@@ -154,29 +154,31 @@ let canvasScale = 1;
 
 function resizeCanvas() {
     const gameArea = document.querySelector('.game-area');
-    const maxWidth = Math.min(gameArea.clientWidth - 20, CONFIG.CANVAS_WIDTH);
-    const scale = maxWidth / CONFIG.CANVAS_WIDTH;
+    const availableWidth = gameArea.clientWidth - 20;
+    const availableHeight = gameArea.clientHeight - 20;
     
-    // Increase canvas height for small screens to give target more vertical range
-    let targetHeight = CONFIG.CANVAS_HEIGHT;
-    if (window.innerWidth <= 270) {
-        targetHeight = 700; // Much taller for 270px screens
-    } else if (window.innerWidth <= 480) {
-        targetHeight = 600; // Taller for mobile screens
-    }
+    // Keep internal resolution at 800x500, scale CSS display to fit
+    const scale = Math.min(
+        availableWidth / CONFIG.CANVAS_WIDTH,
+        availableHeight / CONFIG.CANVAS_HEIGHT,
+        1 // Don't upscale beyond native
+    );
     
-    canvas.style.width = maxWidth + 'px';
-    canvas.style.height = (targetHeight * scale) + 'px';
+    const displayWidth = CONFIG.CANVAS_WIDTH * scale;
+    const displayHeight = CONFIG.CANVAS_HEIGHT * scale;
     
-    // Set internal canvas resolution
+    canvas.style.width = displayWidth + 'px';
+    canvas.style.height = displayHeight + 'px';
+    
+    // Internal resolution stays at game world size
     canvas.width = CONFIG.CANVAS_WIDTH;
-    canvas.height = targetHeight;
+    canvas.height = CONFIG.CANVAS_HEIGHT;
     
     canvasScale = scale;
     
-    // Update player position to stay at bottom of new canvas height
+    // Player position relative to game world
     if (player) {
-        player.y = canvas.height - CONFIG.PLAYER_Y_OFFSET;
+        player.y = CONFIG.CANVAS_HEIGHT - CONFIG.PLAYER_Y_OFFSET;
     }
 }
 
@@ -470,13 +472,11 @@ function handleShoot() {
     initAudio();
     
     // Create arrow - start from bow position
-    // Scale arrow speed based on canvas height for consistent gameplay on all screen sizes
-    const speedMultiplier = Math.max(1, canvas.height / CONFIG.CANVAS_HEIGHT);
     arrow = {
         x: player.x,
         y: player.y - 45,
         vx: 0,
-        vy: -CONFIG.ARROW_SPEED * speedMultiplier,
+        vy: -CONFIG.ARROW_SPEED,
         width: 6,
         height: 40,
         trail: []

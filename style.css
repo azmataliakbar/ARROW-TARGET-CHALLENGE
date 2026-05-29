@@ -18,9 +18,10 @@ body {
 .game-container {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    height: 100vh;
+    height: 100dvh;
     position: relative;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 /* Header Styles */
@@ -197,8 +198,9 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    padding: 10px;
+    padding: 5px;
     box-sizing: border-box;
+    min-height: 0;
 }
 
 /* Canvas styling */
@@ -539,15 +541,6 @@ body {
     .touch-controls.active {
         display: flex !important;
     }
-    
-    .game-area {
-        min-height: 400px;
-        padding-bottom: 100px;
-    }
-    
-    #gameCanvas {
-        max-height: 320px !important;
-    }
 }
 
 @media (min-width: 1025px) {
@@ -615,10 +608,6 @@ body {
         width: 140px;
         height: 50px;
         font-size: 16px;
-    }
-    
-    .game-area {
-        padding-bottom: 120px;
     }
 }
 
@@ -1241,11 +1230,7 @@ body {
         height: 40px;
         font-size: 12px;
     }
-    
-    .game-area {
-        padding-bottom: 95px;
-    }
-    
+
 /* Very small screens 270px+ */
 @media (max-width: 270px) {
     .game-container {
@@ -1254,15 +1239,14 @@ body {
     }
     
     .game-area {
-        min-height: 300px;
-        justify-content: flex-start;
-        padding: 3px;
-        padding-bottom: 80px;
+        min-height: auto;
+        justify-content: center;
+        padding: 2px;
     }
     
     #gameCanvas {
-        max-width: 98% !important;
-        max-height: 220px !important;
+        max-width: 100% !important;
+        max-height: none !important;
         height: auto !important;
     }
     
