@@ -10,16 +10,17 @@ body {
     font-family: 'Rajdhani', sans-serif;
     background: linear-gradient(135deg, #1a0a2e 0%, #16213e 50%, #0f3460 100%);
     min-height: 100vh;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     color: #fff;
 }
 
 .game-container {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
     position: relative;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 /* Header Styles */
