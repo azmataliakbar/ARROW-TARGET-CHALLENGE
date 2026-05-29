@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrow Target Challenge</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <header class="game-header">
+            <div class="header-left">
+                <div class="score-panel">
+                    <span class="score-label">SCORE</span>
+                    <span class="score-value" id="score">0</span>
+                </div>
+                <div class="misses-panel">
+                    <span class="misses-label">MISSES</span>
+                    <span class="misses-value" id="misses">0</span>
+                </div>
+            </div>
+            <div class="game-title">
+                <h1>Arrow Target Challenge</h1>
+            </div>
+            <div class="header-right">
+                <div class="lives-panel">
+                    <span class="lives-label">ARROWS</span>
+                    <div class="lives-container" id="lives">
+                        <span class="life-icon">🏹</span>
+                        <span class="life-icon">🏹</span>
+                        <span class="life-icon">🏹</span>
+                    </div>
+                </div>
+                <button class="btn-reset" id="resetBtn">RESET</button>
+            </div>
+        </header>
+
+        <div class="game-area">
+            <canvas id="gameCanvas"></canvas>
+            
+            <div class="overlay" id="gameScreen">
+                <div class="panel">
+                    <h2 id="gameTitle">Ready to Aim?</h2>
+                    <div id="gameStats" class="game-stats hidden">
+                        <div class="final-score">
+                            <span class="label">Final Score</span>
+                            <span class="value" id="finalScore">0</span>
+                        </div>
+                        <div class="high-score">
+                            <span class="label">High Score</span>
+                            <span class="value" id="highScore">0</span>
+                        </div>
+                    </div>
+                    <div class="controls-info" id="gameInstructions">
+                        <p>🎯 <strong>SPACE</strong> or <strong>CLICK</strong> to shoot</p>
+                        <p>🎮 <strong>ARROWS</strong> or <strong>WASD</strong> to move bow</p>
+                        <p>🏹 You have <strong>3 arrows</strong> - don't miss!</p>
+                        <p>✨ Hit <strong>3 targets</strong> = gain <strong>+1 arrow</strong></p>
+                    </div>
+                    <button class="btn-primary" id="mainBtn">NEW GAME</button>
+                </div>
+            </div>
+
+            <div class="combo-display" id="comboDisplay">
+                <span class="combo-text">COMBO x<span id="comboValue">2</span>!</span>
+            </div>
+
+            <!-- Touch Controls for Mobile/Small Screens -->
+            <div class="touch-controls" id="touchControls">
+                <div class="touch-row">
+                    <button class="touch-btn touch-left" id="touchLeft" aria-label="Move Left">⬅</button>
+                    <button class="touch-btn touch-right" id="touchRight" aria-label="Move Right">➡</button>
+                </div>
+                <div class="touch-row">
+                    <button class="touch-btn touch-shoot" id="touchShoot" aria-label="Shoot">SHOOT</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="instructions-bar" id="instructionsBar">
+            <div class="instruction-item">
+                <span class="key">⬅➡</span>
+                <span class="desc">Move Bow</span>
+            </div>
+            <div class="instruction-item">
+                <span class="key">SPACE</span>
+                <span class="desc">or Click to Shoot</span>
+            </div>
+            <div class="instruction-item bonus-info">
+                <span class="icon">🏹</span>
+                <span class="desc">Hit 3 targets = +1 Arrow (Max 10)</span>
+            </div>
+            <div class="instruction-item lives-info">
+                <span class="icon">💡</span>
+                <span class="desc">Miss = Lose 1 Arrow</span>
+            </div>
+        </div>
+
+        <footer class="game-footer">
+            <p>Designed By : Azmat Ali</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
